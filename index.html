@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap-grid.min.css"
+        integrity="sha512-Aa+z1qgIG+Hv4H2W3EMl3btnnwTQRA47ZiSecYSkWavHUkBF2aPOIIvlvjLCsjapW1IfsGrEO3FU693ReouVTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <a class="header__logo" href="#">
+                    <img class="header__logo-img logo-desc" src="https://w.forfun.com/fetch/79/799249ba57d0f793a0bf8674eb296e1e.jpeg?w=1470&r=0.5625" alt="">
+                    <img class="logo-mob" src="https://w.forfun.com/fetch/79/799249ba57d0f793a0bf8674eb296e1e.jpeg?w=1470&r=0.5625" alt="">
+                </a>
+    
+                <div class="header__top__row">
+                    <a href="tel:0800308999" class="header__number__box">
+                        <svg class="header__number__svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.64153 8.05101C0.486306 6.47698 0.319413 4.38475 1.21048 2.64726L2.93878 0.917786C3.37038 0.485889 4.08464 0.538502 4.4484 1.02899L7.00279 4.47332C7.22961 4.77917 7.26319 5.18736 7.08941 5.52621L6.09508 7.46504C7.29499 9.083 8.70151 10.5367 10.2787 11.7891L10.9446 12.3179L12.8969 11.3153C13.2278 11.1454 13.6256 11.1733 13.9296 11.3879L16.8024 13.416C17.284 13.756 17.3686 14.4371 16.9848 14.8847L15.3478 16.7942C13.8683 17.8644 11.8646 17.845 10.4062 16.7462L7.4692 14.5336C5.8824 13.3382 4.47887 11.917 3.30316 10.315L1.64153 8.05101Z" fill="white"/>
+                        </svg>
+                        <span class="header__number__phone">0 800 308 999</span>
+                    </a>
+    
+                    <div class="header__lang__box header__lang__box-mob">
+                        <div class="translate {% if app.request.getLocale() == 'ru' %}active{% endif %}">
+                            <a class="info__box-item"
+                               href="{{ absolute_url(path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')|merge({'_locale': 'ru'}))) }}">
+                                <span>RU</span>
+                            </a>
+                        </div>
+    
+                        <div class="lang-flag">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="inherit"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#FFD800"/>
+                                <path d="M2 12C2 6.47719 6.47719 2 12 2C17.5228 2 22 6.47719 22 12" fill="#0057B8"/>
+                            </svg>
+                        </div>
+                        <div class="translate {% if app.request.getLocale() == 'ua' %}active{% endif %}">
+                            <a class="info__box-item"
+                               href="{{ absolute_url(path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')|merge({'_locale': 'ua'}))) }}">
+                                <span>UA</span>
+                            </a>
+                        </div>
+                    </div>
+    
+                    <div class="header__search__box">
+                        <button data-toggle="modal" data-target="#searchPortal">
+                            <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.1307 7.48517C13.1307 10.4952 10.6588 12.9713 7.56509 12.9713C4.47135 12.9713 1.99951 10.4952 1.99951 7.48517C1.99951 4.4751 4.47135 1.99902 7.56509 1.99902C10.6588 1.99902 13.1307 4.4751 13.1307 7.48517ZM13.0047 12.6881C11.6291 14.096 9.70041 14.9713 7.56509 14.9713C3.38673 14.9713 -0.000488281 11.6197 -0.000488281 7.48517C-0.000488281 3.35069 3.38673 -0.000976562 7.56509 -0.000976562C11.7434 -0.000976562 15.1307 3.35069 15.1307 7.48517C15.1307 8.78688 14.7949 10.011 14.2044 11.0773L14.8528 11.6848L17.6982 14.3502C18.1012 14.7278 18.1012 15.3399 17.6982 15.7175C17.2951 16.0951 16.6416 16.0951 16.2385 15.7175L13.3932 13.0521L13.0047 12.6881Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="header__comparison__box">
+                        <a href="#">
+                            <svg width="18" height="16" viewBox="0 0 18 16" fill="inherit"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.6759 7.0105L15.5977 2.63604H17.1039C17.3708 2.63604 17.5996 2.37358 17.5996 2.06736C17.5996 1.76115 17.3708 1.49868 17.1039 1.49868H10.7168C10.4499 0.405069 9.43941 -0.229223 8.48616 0.0769918C7.87604 0.273842 7.41844 0.820649 7.24685 1.49868H0.878843C0.611919 1.49868 0.383129 1.76115 0.383129 2.06736C0.383129 2.37358 0.611919 2.63604 0.878843 2.63604H2.38505L0.306866 7.0105C0.116207 7.098 -0.0172545 7.31671 0.0018114 7.55728C0.0018114 9.59143 1.45082 11.2537 3.22395 11.2537C4.99708 11.2537 6.44608 9.59143 6.44608 7.55728C6.44608 7.31671 6.31262 7.11986 6.14103 7.03235L4.04378 2.61417H7.28498C7.45658 3.2922 7.91414 3.83901 8.52426 4.03586V12.2599C7.18965 12.5223 6.21729 13.8783 6.21729 15.4313C6.21729 15.7375 6.44608 16 6.713 16H11.346C11.6129 16 11.8417 15.7375 11.8417 15.4313C11.8417 13.8783 10.8694 12.5441 9.53474 12.2599V4.05774C10.1258 3.86088 10.6024 3.33596 10.774 2.63604H14.0152L11.8798 7.0105C11.6701 7.098 11.5366 7.31671 11.5558 7.55728C11.5558 9.59143 13.0048 11.2537 14.7778 11.2537C16.551 11.2537 18 9.59143 18 7.55728C18 7.31671 17.8856 7.098 17.6759 7.0105ZM4.99708 6.9667H1.45082L3.22395 3.22659L4.99708 6.9667ZM13.0238 6.9667L14.797 3.22659L16.57 6.9667H13.0238Z" fill="white"/>
+                            </svg>
+                        </a>
+                    </div>
+    
+                    <div class="header__user__box">
+                        <div id="enterBtn">
+                       
+                                <a class=" --loggedin" target="_blank" href="#"
+                                   rel="nofollow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18" fill="inherit">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.3604 4.6735C3.3604 2.10204 5.44779 0 8.0013 0C10.5549 0 12.6423 2.10204 12.6423 4.6735C12.6423 7.24493 10.5549 9.34704 8.0013 9.34704C5.44779 9.34704 3.3604 7.24493 3.3604 4.6735ZM15.4997 12.2245C15.6821 12.4898 15.8442 12.7755 15.9658 13.0816C16.0266 13.204 16.0063 13.3469 15.905 13.4694C15.743 13.7551 15.5606 14.0204 15.3579 14.2857C15.0742 14.6735 14.7498 15.0204 14.4256 15.3469C14.1419 15.6326 13.8177 15.9184 13.4934 16.1633C11.8924 17.3673 9.96708 18 7.981 18C5.99494 18 4.06965 17.3674 2.46864 16.1633C2.14436 15.898 1.8201 15.6326 1.53639 15.3469C1.19186 15.0204 0.887848 14.6735 0.604137 14.2857C0.421746 14.0408 0.219107 13.7551 0.0569539 13.4694C-0.00382985 13.3469 -0.0240777 13.2041 0.0367061 13.0816C0.158284 12.7959 0.320427 12.4898 0.502818 12.2245C1.41478 10.8367 2.87392 9.91825 4.49521 9.69375C4.69785 9.65295 4.92079 9.71415 5.08293 9.83665C5.93411 10.4694 6.94735 10.7959 8.00126 10.7959C9.05517 10.7959 10.0684 10.4694 10.9196 9.83665C11.0818 9.71415 11.3047 9.67345 11.5073 9.69375C13.1286 9.91825 14.5674 10.8367 15.4997 12.2245Z" fill="#C5C6C6"/>
+                                    </svg>
+                                    <span class="user-active-title">user.name</span>
+                                </a>
+                    
+                        </div>
+                    </div>
+                    <div class="nav-mobile-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <nav class="header__nav">
+                    <div class="header__nav__dropdown__mobile__row">
+                        <div class="header__user__box">
+                            <div id="enterBtn">
+                              
+                                    <a class="--loggedin" target="_blank" href="#" rel="nofollow">
+                                        <span class="user-active-title-mob">user.name!</span>
+                                    </a>
+                            
+                            </div>
+                        </div>
+                        <div class="header__lang__box">
+                            <div class="translate {% if app.request.getLocale() == 'ru' %}active{% endif %}">
+                                <a class="info__box-item"
+                                   href="{{ absolute_url(path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')|merge({'_locale': 'ru'}))) }}">
+                                    <span>RU</span>
+                                </a>
+                            </div>
+    
+                            <div class="lang-flag">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="inherit"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#FFD800"/>
+                                    <path d="M2 12C2 6.47719 6.47719 2 12 2C17.5228 2 22 6.47719 22 12" fill="#0057B8"/>
+                                </svg>
+                            </div>
+                            <div class="translate {% if app.request.getLocale() == 'ua' %}active{% endif %}">
+                                <a class="info__box-item"
+                                   href="{{ absolute_url(path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')|merge({'_locale': 'ua'}))) }}">
+                                    <span>UA</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header__nav__dropdown">
+                        <div class="dropdown-box">
+                            <button class="dropbtn">TITLE-1
+                                <svg class="dropbtn-arrow" width="11" height="6" viewBox="0 0 11 6" fill="inherit"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 1L5.5 5L1 1" stroke="inherit" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="dropdown-content">
+                                <div class="dropdown__content-item__wrapper">
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="dropdown-box">
+                            <button class="dropbtn">TITLE-2
+                                <svg class="dropbtn-arrow" width="11" height="6" viewBox="0 0 11 6" fill="inherit"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 1L5.5 5L1 1" stroke="inherit" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="dropdown-content">
+                                <div class="dropdown__content-item__wrapper">
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown-box">
+                            <button class="dropbtn">TITLE-3
+                                <svg class="dropbtn-arrow" width="11" height="6" viewBox="0 0 11 6" fill="inherit"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 1L5.5 5L1 1" stroke="inherit" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="dropdown-content">
+                                <div class="dropdown__content-item__wrapper">
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown-box">
+                            <button class="dropbtn">TITLE-4
+                                <svg class="dropbtn-arrow" width="11" height="6" viewBox="0 0 11 6" fill="inherit"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 1L5.5 5L1 1" stroke="inherit" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="dropdown-content">
+                                <div class="dropdown__content-item__wrapper">
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown-box mr-0">
+                            <button class="dropbtn">TITLE-5
+                                <svg class="dropbtn-arrow" width="11" height="6" viewBox="0 0 11 6" fill="inherit"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 1L5.5 5L1 1" stroke="inherit" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="dropdown-content">
+                                <div class="dropdown__content-item__wrapper">
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    <a class="dropdown__content-item" href="#">SUB-TITLE</a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+    
+                        <a href="https://invite.viber.com/?g2=AQAWWMNTCnLwqU7%2Bb9Zu%2F68aLRcwCjojepUS6FQ69eONDX8pY5eorLHbFQS%2BDiWa&lang=ru" class="header__nav__subscribe" target="_blank">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 24L1.722 17.5807C0.742817 15.8226 0.229619 13.8557 0.229619 11.8552C0.229619 5.32136 5.55769 0 12.1148 0C18.6652 0 24 5.31463 24 11.8552C24 18.389 18.6719 23.7103 12.1148 23.7103C10.1497 23.7103 8.20486 23.2119 6.46935 22.2756L0 24ZM6.79347 19.8709L7.19864 20.1134C8.69104 21.0025 10.3928 21.474 12.1148 21.474C17.4294 21.474 21.7513 17.1631 21.7513 11.8619C21.7513 6.56075 17.4294 2.24979 12.1148 2.24979C6.80023 2.24979 2.47832 6.56075 2.47832 11.8619C2.47832 13.6132 2.96456 15.3376 3.88971 16.8465L4.13957 17.2574L3.1739 20.8409L6.79347 19.8709Z" fill="#9587EE"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.5382 13.5054C16.052 13.2158 15.4105 12.8857 14.8365 13.1215C14.3975 13.3033 14.1139 13.9904 13.8235 14.3474C13.6749 14.5293 13.4994 14.5562 13.2765 14.4686C11.6153 13.8085 10.3458 12.7038 9.42737 11.1815C9.27206 10.9458 9.29904 10.7572 9.48813 10.5416C9.765 10.2183 10.1094 9.84783 10.1837 9.40999C10.258 8.97216 10.0554 8.46022 9.87305 8.06953C9.64345 7.57108 9.3801 6.86381 8.88039 6.58091C8.42118 6.32494 7.81338 6.4664 7.4082 6.79646C6.69914 7.36901 6.36151 8.27163 6.36826 9.16077C6.36826 9.41673 6.40204 9.66595 6.46281 9.90844C6.60463 10.4945 6.8815 11.0468 7.18539 11.5655C7.41499 11.9561 7.66484 12.3401 7.94171 12.7106C8.82635 13.9163 9.93381 14.9604 11.2101 15.7417C11.8517 16.1324 12.5337 16.4759 13.2495 16.7117C14.0464 16.9744 14.7622 17.2506 15.6266 17.0889C16.5315 16.9205 17.4229 16.3614 17.7808 15.4925C17.8888 15.2365 17.9428 14.9469 17.882 14.6774C17.7537 14.1116 16.9974 13.7748 16.5382 13.5054Z" fill="#9587EE"/>
+                            </svg>
+                            <p>subscribe</p>
+                        </a>
+    
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    
+    
+    
+    
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"
+        integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
